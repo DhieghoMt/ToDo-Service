@@ -1,0 +1,45 @@
+plugins {
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.3'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Spring Boot Starter Web: Para construir la API REST
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Boot Starter Data JPA: Para trabajar con JPA y repositorios
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // MySQL Connector: Para conectar la aplicación con una base de datos MySQL
+    implementation 'mysql:mysql-connector-java:8.0.32'
+
+
+    // Lombok: Para reducir el código boilerplate con anotaciones como @Getter, @Setter, @Builder, etc.
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot Starter Validation: Para la validación de los DTOs
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Testing dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+test {
+    useJUnitPlatform()
+}
