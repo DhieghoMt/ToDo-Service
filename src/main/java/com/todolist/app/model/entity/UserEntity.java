@@ -12,12 +12,10 @@ import java.util.List;
 import java.util.UUID;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Builder
 @Entity
 @Table(name = "users")
 public class UserEntity {

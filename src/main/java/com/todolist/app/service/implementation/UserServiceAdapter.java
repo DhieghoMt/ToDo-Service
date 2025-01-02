@@ -18,4 +18,9 @@ public class UserServiceAdapter implements IUserService {
     public List<UserEntity> listAllUsers() {
         return repository.findAll();
     }
+
+    @Override
+    public UserEntity saveUser(UserEntity userEntity) {
+        return repository.save(userEntity);
+    }
 }

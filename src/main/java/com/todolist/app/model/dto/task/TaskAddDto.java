@@ -4,17 +4,14 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Builder
-public class TaskDto {
+public class TaskAddDto {
 
     private String title;
     private String description;
     private String status;
     private LocalDate due_date;
-    private LocalDate updated_At;
     private String userId;
-
 }

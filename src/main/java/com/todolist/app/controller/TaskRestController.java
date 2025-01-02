@@ -1,5 +1,6 @@
 package com.todolist.app.controller;
 
+import com.todolist.app.model.dto.task.TaskAddDto;
 import com.todolist.app.model.dto.task.TaskDto;
 import com.todolist.app.usecase.TaskUseCase;
 import com.todolist.app.util.ServerResponse;
@@ -26,9 +27,9 @@ public class TaskRestController {
         return responseWith200(SUCCESS, request.getRequestURI(), useCase.listAllTasks());
     }
 
-//    @PostMapping
-//    public ResponseEntity<ServerResponse<TaskDto>> saveTask(@RequestBody TaskAddDto taskAddDto, HttpServletRequest request) {
-//        return responseWith200(SUCCESS, request.getRequestURI(), useCase.saveTask(taskAddDto));
-//    }
+    @PostMapping
+    public ResponseEntity<ServerResponse<TaskDto>> saveTask(@RequestBody TaskAddDto taskAddDto, HttpServletRequest request) {
+        return responseWith200(SUCCESS, request.getRequestURI(), useCase.saveTask(taskAddDto));
+    }
 
 }

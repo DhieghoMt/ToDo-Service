@@ -21,13 +21,13 @@ public class UserRestController {
 
     private final UserUsecase useCase;
 
-//    @GetMapping
-//    public ResponseEntity<ServerResponse<List<UserDto>>> listAllUsers(HttpServletRequest request) {
-//        return responseWith200(SUCCESS, request.getRequestURI(), useCase.listAllUsers());
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<ServerResponse<UserDto>> saveUser(@RequestBody UserAddDto userAddDto, HttpServletRequest request) {
-//        return responseWith200(SUCCESS, request.getRequestURI(), useCase.saveUser(userAddDto));
-//    }
+    @GetMapping
+    public ResponseEntity<ServerResponse<List<UserDto>>> listAllUsers(HttpServletRequest request) {
+        return responseWith200(SUCCESS, request.getRequestURI(), useCase.listAllUsers());
+    }
+
+    @PostMapping
+    public ResponseEntity<ServerResponse<UserDto>> saveUser(@RequestBody UserDto userDto, HttpServletRequest request) {
+        return responseWith200(SUCCESS, request.getRequestURI(), useCase.saveUser(userDto));
+    }
 }

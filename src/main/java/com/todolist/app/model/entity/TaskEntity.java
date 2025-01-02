@@ -32,7 +32,7 @@ public class TaskEntity {
     private String status;
 
     @Column
-    private Date due_date;
+    private LocalDate due_date;
 
 
     @Column
