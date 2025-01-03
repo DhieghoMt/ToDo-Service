@@ -10,5 +10,9 @@ public interface ITaskService {
 
     TaskEntity addTask(TaskEntity entity);
 
+    TaskEntity updateTask(TaskEntity entity);
 
+    TaskEntity getTaskById(String taskId);
+
+    void deleteTask(String taskId);
 }

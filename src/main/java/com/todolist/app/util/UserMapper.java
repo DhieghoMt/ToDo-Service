@@ -1,6 +1,6 @@
 package com.todolist.app.util;
 
-import com.todolist.app.model.dto.user.UserDto;
+import com.todolist.app.model.dto.UserDto;
 import com.todolist.app.model.entity.UserEntity;
 import org.springframework.stereotype.Component;
 

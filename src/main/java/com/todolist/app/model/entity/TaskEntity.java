@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,32 +23,30 @@ public class TaskEntity {
     @Column(length = 12)
     private String taskId;
 
-    @Column
+    @Column(length = 50, nullable = false)
     private String title;
 
-    @Column
+    @Column(length = 100, nullable = false)
     private String description;
 
-    @Column
+    @Column(length = 20, nullable = false)
     private String status;
 
-    @Column
+    @Column(length = 20, nullable = false)
     private LocalDate due_date;
 
 
-    @Column
+    @Column(length = 20, nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
     private LocalDate created_At;
 
-    @Column
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private LocalDate updated_At;
+    @Column(length = 20)
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDateTime updated_At;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", nullable = false)
     private UserEntity user;
 
 
@@ -56,4 +55,16 @@ public class TaskEntity {
         this.taskId = UUID.randomUUID().toString().substring(0, 12);
         this.created_At = LocalDate.now();
     }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_At = LocalDateTime.now();
+    }
+
+    @PreRemove
+    protected void onDelete() {
+        this.updated_At = LocalDateTime.now();
+    }
+
+
 }

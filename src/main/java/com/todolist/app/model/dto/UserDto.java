@@ -1,6 +1,5 @@
-package com.todolist.app.model.dto.user;
+package com.todolist.app.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;

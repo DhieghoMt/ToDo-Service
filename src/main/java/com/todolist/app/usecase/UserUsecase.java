@@ -1,7 +1,6 @@
 package com.todolist.app.usecase;
 
-import com.todolist.app.model.dto.user.UserDto;
-import com.todolist.app.model.entity.UserEntity;
+import com.todolist.app.model.dto.UserDto;
 import com.todolist.app.service.interfaces.IUserService;
 import com.todolist.app.util.UserMapper;
 import lombok.AllArgsConstructor;

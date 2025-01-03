@@ -1,6 +1,6 @@
 package com.todolist.app.controller;
 
-import com.todolist.app.model.dto.user.UserDto;
+import com.todolist.app.model.dto.UserDto;
 import com.todolist.app.usecase.UserUsecase;
 import com.todolist.app.util.ServerResponse;
 import jakarta.servlet.http.HttpServletRequest;
