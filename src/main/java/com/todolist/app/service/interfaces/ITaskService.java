@@ -12,7 +12,7 @@ public interface ITaskService {
 
     TaskEntity updateTask(TaskEntity entity);
 
-    TaskEntity getTaskById(String taskId);
+    TaskEntity getTaskById(String id);
 
-    void deleteTask(String taskId);
+    void deleteTask(String id);
 }

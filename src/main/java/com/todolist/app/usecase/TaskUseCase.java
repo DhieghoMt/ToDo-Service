@@ -24,6 +24,10 @@ public class TaskUseCase {
                 .toList();
     }
 
+    public TaskDto getTaskById(String taskId) {
+        return convertToDto(service.getTaskById(taskId));
+    }
+
     public TaskDto saveTask(TaskDto taskDto) {
         return convertToDto(service.addTask(convertToEntity(taskDto)));
     }
@@ -37,9 +41,6 @@ public class TaskUseCase {
         return convertToDto(service.updateTask(taskExisted));
     }
 
-    public TaskDto getTaskById(String taskId) {
-        return convertToDto(service.getTaskById(taskId));
-    }
 
     public String deleteTask(String taskId) {
         service.deleteTask(taskId);

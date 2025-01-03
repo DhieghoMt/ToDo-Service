@@ -1,6 +1,5 @@
 package com.todolist.app.exceptions;
 
-import lombok.Data;
 import lombok.Getter;
 
 @Getter

@@ -1,6 +1,5 @@
 package com.todolist.app.service.implementation;
 
-import com.todolist.app.exceptions.TaskException;
 import com.todolist.app.exceptions.UserException;
 import com.todolist.app.model.entity.UserEntity;
 import com.todolist.app.repository.UserRepository;
@@ -9,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.todolist.app.util.Constants.*;
 
@@ -27,7 +27,31 @@ public class UserServiceAdapter implements IUserService {
     }
 
     @Override
-    public UserEntity saveUser(UserEntity userEntity) {
-        return repository.save(userEntity);
+    public UserEntity getUserById(String id) {
+        if (repository.findById(id).isEmpty()) {
+            throw new UserException(USER_NOT_FOUND, 400, null);
+        }
+        return repository.findById(id).get();
+    }
+
+    @Override
+    public UserEntity saveUser(UserEntity entity) {
+        return Optional.of(repository.save(entity))
+                .orElseThrow(() -> new UserException(USER_FAILED_CREATE, 400, null));
+    }
+
+    @Override
+    public UserEntity updateUser(UserEntity entity) {
+        return Optional.of(repository.save(entity))
+                .orElseThrow(() -> new UserException(USER_FAILED_UPDATE, 400, null));
+    }
+
+
+    @Override
+    public void deleteUser(String id) {
+        if (repository.findById(id).isEmpty()) {
+            throw new UserException(USER_NOT_FOUND, 400, null);
+        }
+        repository.deleteById(id);
     }
 }
