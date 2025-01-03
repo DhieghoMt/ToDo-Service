@@ -3,13 +3,11 @@ package com.todolist.app.exceptions;
 import com.todolist.app.util.ServerResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.bind.support.WebExchangeBindException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +28,15 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(TaskException.class)
     public ResponseEntity<ServerResponse<Object>> handleTaskException(TaskException e, HttpServletRequest request) {
+        Object data = e.getData();
+        String message = e.getMessage();
+        int code = e.getHttpStatusCode();
+        String path = request.getRequestURI();
+        return responseCustom(code, message, path, data);
+    }
+
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ServerResponse<Object>> handleUserException(UserException e, HttpServletRequest request) {
         Object data = e.getData();
         String message = e.getMessage();
         int code = e.getHttpStatusCode();

@@ -5,9 +5,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,13 +44,11 @@ public class UserEntity {
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
     private LocalDate created_At;
 
-    @Column
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private LocalDate updated_At;
+    @Column(length = 20)
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDateTime updated_At;
 
     @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -58,4 +60,16 @@ public class UserEntity {
         this.userId = UUID.randomUUID().toString().substring(0, 12);
         this.created_At = LocalDate.now();
     }
+
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_At = LocalDateTime.now();
+    }
+
+    @PreRemove
+    protected void onDelete() {
+        this.updated_At = LocalDateTime.now();
+    }
+
 }
