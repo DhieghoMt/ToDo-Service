@@ -15,4 +15,6 @@ public interface ITaskService {
     TaskEntity getTaskById(String id);
 
     void deleteTask(String id);
+
+    List<TaskEntity> getTasksByUserId(String userId);
 }

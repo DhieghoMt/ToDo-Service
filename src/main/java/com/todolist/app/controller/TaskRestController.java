@@ -47,5 +47,9 @@ public class TaskRestController {
         return responseWith200(SUCCESS, request.getRequestURI(), useCase.deleteTask(taskId));
     }
 
+    @GetMapping(path = "/byUserId/{userId}")
+    public ResponseEntity<ServerResponse<Object>> getTaskByUserId(@PathVariable(name = "userId") String userId, HttpServletRequest request) {
+        return responseWith200(SUCCESS, request.getRequestURI(), useCase.getTasksByUserId(userId));
+    }
 
 }
