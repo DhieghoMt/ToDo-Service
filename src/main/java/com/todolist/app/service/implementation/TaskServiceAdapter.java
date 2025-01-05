@@ -56,5 +56,13 @@ public class TaskServiceAdapter implements ITaskService {
         repository.deleteById(id);
     }
 
+    @Override
+    public List<TaskEntity> getTasksByUserId(String userId) {
+        if (repository.getTasksByUserId(userId).isEmpty()) {
+            throw new TaskException(TASK_NOT_FOUND, 200, List.of());
+        }
+        return repository.getTasksByUserId(userId);
+    }
+
 
 }

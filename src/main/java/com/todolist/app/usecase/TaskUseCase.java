@@ -3,6 +3,7 @@ package com.todolist.app.usecase;
 import com.todolist.app.model.dto.TaskDto;
 import com.todolist.app.model.entity.TaskEntity;
 import com.todolist.app.service.interfaces.ITaskService;
+import com.todolist.app.service.interfaces.IUserService;
 import com.todolist.app.util.TaskMapper;
 import lombok.AllArgsConstructor;
 
@@ -48,4 +49,10 @@ public class TaskUseCase {
     }
 
 
+    public List<TaskDto> getTasksByUserId(String userId) {
+        return service.getTasksByUserId(userId)
+                .stream()
+                .map(TaskMapper::convertToDto)
+                .toList();
+    }
 }
