@@ -1,5 +1,6 @@
 package com.todolist.app.service.interfaces;
 
+import com.todolist.app.model.entity.CategoryEntity;
 import com.todolist.app.model.entity.TaskEntity;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface ITaskService {
     void deleteTask(String id);
 
     List<TaskEntity> getTasksByUserId(String userId);
+
+    TaskEntity asignTaskToCategory(TaskEntity task, CategoryEntity category);
 }

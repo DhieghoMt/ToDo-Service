@@ -52,4 +52,11 @@ public class TaskRestController {
         return responseWith200(SUCCESS, request.getRequestURI(), useCase.getTasksByUserId(userId));
     }
 
+    @PostMapping(path = "/{taskId}/{categoryId}/asign")
+    public ResponseEntity<ServerResponse<TaskDto>> asignTaskToCategory(@PathVariable(name = "taskId") String taskId,
+                                                                      @PathVariable(name = "categoryId") String categoryId,
+                                                                      HttpServletRequest request) {
+        return responseWith200(SUCCESS, request.getRequestURI(), useCase.asignTaskToCategory(taskId, categoryId));
+    }
+
 }

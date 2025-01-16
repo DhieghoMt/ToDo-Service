@@ -1,9 +1,10 @@
 package com.todolist.app.usecase;
 
 import com.todolist.app.model.dto.TaskDto;
+import com.todolist.app.model.entity.CategoryEntity;
 import com.todolist.app.model.entity.TaskEntity;
+import com.todolist.app.service.interfaces.ICategoryService;
 import com.todolist.app.service.interfaces.ITaskService;
-import com.todolist.app.service.interfaces.IUserService;
 import com.todolist.app.util.TaskMapper;
 import lombok.AllArgsConstructor;
 
@@ -16,6 +17,7 @@ import static com.todolist.app.util.TaskMapper.convertToEntity;
 public class TaskUseCase {
 
     private final ITaskService service;
+    private final ICategoryService categoryService;
 
 
     public List<TaskDto> listAllTasks() {
@@ -54,5 +56,11 @@ public class TaskUseCase {
                 .stream()
                 .map(TaskMapper::convertToDto)
                 .toList();
+    }
+
+    public TaskDto asignTaskToCategory(String taskId, String categoryId) {
+        TaskEntity task = service.getTaskById(taskId);
+        CategoryEntity category = categoryService.getCategoryById(categoryId);
+        return convertToDto(service.asignTaskToCategory(task, category));
     }
 }

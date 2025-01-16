@@ -44,6 +44,16 @@ public class GlobalHandlerException {
         return responseCustom(code, message, path, data);
     }
 
+    @ExceptionHandler(CategoryException.class)
+    public ResponseEntity<ServerResponse<Object>> handleCategoryException(CategoryException e, HttpServletRequest request) {
+        Object data = e.getData();
+        String message = e.getMessage();
+        int code = e.getHttpStatusCode();
+        String path = request.getRequestURI();
+        return responseCustom(code, message, path, data);
+    }
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ServerResponse<Object>> handleValidationExceptions(MethodArgumentNotValidException ex, HttpServletRequest request) {
         String path = request.getRequestURI();

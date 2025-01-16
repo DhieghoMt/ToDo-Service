@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -50,6 +51,14 @@ public class TaskEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", nullable = false)
     private UserEntity user;
+
+    @ManyToMany
+    @JoinTable(
+            name = "task_categories",
+            joinColumns = @JoinColumn(name = "taskId"),
+            inverseJoinColumns = @JoinColumn(name = "categoryId")
+    )
+    private List<CategoryEntity> categories;
 
 
     @PrePersist

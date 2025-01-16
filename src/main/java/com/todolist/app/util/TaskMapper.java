@@ -18,6 +18,7 @@ public class TaskMapper {
                 .due_date(taskEntity.getDue_date())
                 .updated_At(taskEntity.getUpdated_At())
                 .userId(taskEntity.getUser().getUserId())
+                .categories(taskEntity.getCategories().stream().map(CategoryMapper::convertToDto).toList())
                 .build();
     }
 
